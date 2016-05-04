@@ -24,6 +24,8 @@ group :test, :development do
   gem "pry"
   gem "guard-rspec", require: false
   gem "thin"
+  gem 'launchy'  #to use save_and_open_page
+  gem "rails-erd"
 end
 
 gem "bootstrap-sass", "~> 3.1.1"
