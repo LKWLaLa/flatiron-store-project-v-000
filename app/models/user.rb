@@ -5,6 +5,19 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :carts
+  
 
+  def current_cart=(cart)
+    @current_cart = cart
+    @current_cart_id = cart.id 
+  end
+
+  def current_cart
+    @current_cart
+  end
+
+
+
+  
 
 end
