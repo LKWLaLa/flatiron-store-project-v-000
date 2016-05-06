@@ -1,4 +1,7 @@
 FactoryGirl.create(:user)
+FactoryGirl.create(:category)
+
+
 
 10.times do 
   Item.create(

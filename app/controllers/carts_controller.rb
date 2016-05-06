@@ -4,22 +4,6 @@ class CartsController < ApplicationController
     @carts = current_user.carts
   end
 
-  def new
-    @cart = Cart.new
-  end
-
-  def create
-    @cart = Cart.create(cart_params)
-    redirect_to cart_path(@cart)
-  end
-
-  def edit
-    @cart = Cart.find(params[:id])
-  end
-
-  def update
-  end
-
   def show
     @cart = Cart.find(params[:id])
     if current_user.carts.include?(@cart)
@@ -31,11 +15,14 @@ class CartsController < ApplicationController
 
   def checkout
     @cart = Cart.find(params[:id])
+    @cart.update_line_items
+    @cart.status = "submitted"
+    @cart.save
+    current_user.current_cart_id = nil
+    current_user.save
     redirect_to cart_path(@cart)
   end
 
-  def destroy
-  end
 
   private
 
